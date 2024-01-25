@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "tb_user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,9 +18,11 @@ public class User {
     private String phone;
     private LocalDate birthDate;
     private String password;
+    //private String [] roles;
 
     @OneToMany(mappedBy = "client")
-    private List<Order> orderList = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
+
 
     public User() {
     }
@@ -83,7 +84,7 @@ public class User {
         this.password = password;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<Order> getOrders() {
+        return orders;
     }
 }

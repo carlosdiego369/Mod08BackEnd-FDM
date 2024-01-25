@@ -14,7 +14,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
     private OrderStatus status;
@@ -25,6 +24,8 @@ public class Order {
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
+
+    //private Payment payment;
 
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
@@ -38,6 +39,13 @@ public class Order {
         this.status = status;
         this.client = client;
         this.payment = payment;
+    }
+
+    public Order(Long id, Instant moment, OrderStatus status, User client) {
+        this.id = id;
+        this.moment = moment;
+        this.status = status;
+        this.client = client;
     }
 
     public Long getId() {
@@ -84,7 +92,7 @@ public class Order {
         return items;
     }
 
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return items.stream().map(x -> x.getProduct()).toList();
     }
 }

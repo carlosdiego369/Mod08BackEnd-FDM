@@ -8,13 +8,15 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_category")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
     @ManyToMany(mappedBy = "categories")
-    Set<Product> products = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
 
     public Category() {
     }

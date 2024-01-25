@@ -14,6 +14,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
     @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
@@ -87,8 +88,7 @@ public class Product {
         return items;
     }
 
-    public List<Order> getOrders(){
+    public List<Order> getOrders() {
         return items.stream().map(x -> x.getOrder()).toList();
     }
-
 }
